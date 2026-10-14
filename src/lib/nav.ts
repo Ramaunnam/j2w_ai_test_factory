@@ -1,0 +1,211 @@
+import {
+  Activity,
+  BadgeCheck,
+  CheckSquare,
+  ClipboardCheck,
+  FileCheck2,
+  FlaskConical,
+  GaugeCircle,
+  GitCompareArrows,
+  Database,
+  Network,
+  Rocket,
+  Route,
+  ScanSearch,
+  ShieldAlert,
+  Users,
+  Wrench,
+  type LucideIcon,
+} from 'lucide-react'
+
+export type NavGroupKey = 'Overview' | 'Build' | 'Run' | 'Prove and decide'
+
+export interface NavItem {
+  no: number
+  label: string
+  short: string
+  route: string
+  icon: LucideIcon
+  group: NavGroupKey
+  requirements: string[]
+  blurb: string
+}
+
+export const NAV_ITEMS: NavItem[] = [
+  {
+    no: 1,
+    label: 'Command Centre',
+    short: 'Command Centre',
+    route: '/',
+    icon: GaugeCircle,
+    group: 'Overview',
+    requirements: ['R1', 'R2', 'R3', 'R6', 'R10'],
+    blurb: 'Confidence score, requirement status, process health, month-end readiness.',
+  },
+  {
+    no: 2,
+    label: 'Landscape',
+    short: 'Landscape',
+    route: '/landscape',
+    icon: Network,
+    group: 'Overview',
+    requirements: ['R5', 'R8'],
+    blurb: 'Systems, interfaces, data sources and the checks you can run on them.',
+  },
+  {
+    no: 3,
+    label: 'Process Discovery',
+    short: 'Discovery',
+    route: '/discovery',
+    icon: ScanSearch,
+    group: 'Build',
+    requirements: ['R1'],
+    blurb: 'Recorded key-user sessions and system logs turned into a process map.',
+  },
+  {
+    no: 4,
+    label: 'Test Studio',
+    short: 'Test Studio',
+    route: '/studio',
+    icon: FlaskConical,
+    group: 'Build',
+    requirements: ['R1', 'R2', 'R9'],
+    blurb: 'AI-generated scenarios, mixed steps, plain-English rules, approvals.',
+  },
+  {
+    no: 5,
+    label: 'Test Data',
+    short: 'Test Data',
+    route: '/test-data',
+    icon: Database,
+    group: 'Build',
+    requirements: ['R4'],
+    blurb: 'AI-generated linked master and transaction data for the test environment.',
+  },
+  {
+    no: 6,
+    label: 'Run Centre',
+    short: 'Run Centre',
+    route: '/run',
+    icon: Rocket,
+    group: 'Run',
+    requirements: ['R2', 'R3', 'R5', 'R9'],
+    blurb: 'Select and run scenarios, watch every step live, collect evidence.',
+  },
+  {
+    no: 7,
+    label: 'Interfaces',
+    short: 'Interfaces',
+    route: '/interfaces',
+    icon: GitCompareArrows,
+    group: 'Run',
+    requirements: ['R5'],
+    blurb: 'Shop-floor and financial interfaces, record compare, follow the truck.',
+  },
+  {
+    no: 8,
+    label: 'Regression & Change Impact',
+    short: 'Regression',
+    route: '/regression',
+    icon: Route,
+    group: 'Run',
+    requirements: ['R2', 'R9'],
+    blurb: 'Upcoming changes, AI impact assessment, regression against baseline.',
+  },
+  {
+    no: 9,
+    label: 'Month-End Load',
+    short: 'Month-End Load',
+    route: '/load',
+    icon: Activity,
+    group: 'Run',
+    requirements: ['R6'],
+    blurb: 'Normal, 2x and 5x month-end volume with data integrity under load.',
+  },
+  {
+    no: 10,
+    label: 'Access & SoD',
+    short: 'Access & SoD',
+    route: '/access-sod',
+    icon: ShieldAlert,
+    group: 'Run',
+    requirements: ['R7'],
+    blurb: 'Role data, conflict matrix, users in conflict and proof tests.',
+  },
+  {
+    no: 11,
+    label: 'Reconciliation',
+    short: 'Reconciliation',
+    route: '/reconciliation',
+    icon: FileCheck2,
+    group: 'Run',
+    requirements: ['R8'],
+    blurb: 'Migration and cross-system reconciliation with explained differences.',
+  },
+  {
+    no: 12,
+    label: 'Self-Healing',
+    short: 'Self-Healing',
+    route: '/self-healing',
+    icon: Wrench,
+    group: 'Run',
+    requirements: ['R9'],
+    blurb: 'Change feed, affected scripts, AI fix diff, confidence and approval.',
+  },
+  {
+    no: 13,
+    label: 'Evidence & Reports',
+    short: 'Evidence',
+    route: '/evidence',
+    icon: ClipboardCheck,
+    group: 'Prove and decide',
+    requirements: ['R3'],
+    blurb: 'Locked evidence bundles, hashes, approvers and formatted test reports.',
+  },
+  {
+    no: 14,
+    label: 'Release & Close Readiness',
+    short: 'Release Readiness',
+    route: '/release',
+    icon: BadgeCheck,
+    group: 'Prove and decide',
+    requirements: ['R3', 'R6'],
+    blurb: 'Release gate verdict and the month-end freeze view.',
+  },
+  {
+    no: 15,
+    label: 'Approvals',
+    short: 'Approvals',
+    route: '/approvals',
+    icon: CheckSquare,
+    group: 'Prove and decide',
+    requirements: ['R1', 'R9'],
+    blurb: 'Key-user queue for scenarios, healed scripts and evidence.',
+  },
+  {
+    no: 16,
+    label: 'Delivery Model',
+    short: 'Delivery Model',
+    route: '/delivery',
+    icon: Users,
+    group: 'Prove and decide',
+    requirements: ['R10'],
+    blurb: 'Build, Run, Hand over progress, pod roles and outcome targets.',
+  },
+  {
+    no: 17,
+    label: 'Requirement Coverage',
+    short: 'Coverage',
+    route: '/coverage',
+    icon: ClipboardCheck,
+    group: 'Prove and decide',
+    requirements: ['R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10'],
+    blurb: 'R1-R10 mapped to the page that demonstrates it, with status.',
+  },
+]
+
+export const NAV_GROUPS: NavGroupKey[] = ['Overview', 'Build', 'Run', 'Prove and decide']
+
+export function navByRoute(route: string): NavItem | undefined {
+  return NAV_ITEMS.find((item) => item.route === route)
+}

@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 210 24% 97%;
+    --surface: 0 0% 100%;
+    --surface-2: 210 24% 95%;
+    --border: 214 20% 87%;
+    --text: 215 30% 16%;
+    --text-muted: 215 16% 45%;
+
+    --primary: 207 64% 24%;
+    --primary-strong: 207 70% 17%;
+    --primary-fg: 0 0% 100%;
+    --primary-soft: 207 58% 93%;
+
+    --accent: 37 90% 42%;
+    --accent-soft: 38 92% 92%;
+    --accent-fg: 30 90% 18%;
+
+    --success: 152 55% 31%;
+    --success-soft: 150 55% 93%;
+
+    --danger: 0 68% 44%;
+    --danger-soft: 0 80% 96%;
+
+    --info: 199 72% 34%;
+    --info-soft: 199 72% 94%;
+
+    --ai: 262 60% 48%;
+    --ai-soft: 262 70% 96%;
+
+    --ring: 207 64% 42%;
+
+    /* chart series - validated categorical slots (blue, aqua) + grid ink */
+    --viz-1: 212 69% 50%;
+    --viz-2: 157 73% 40%;
+    --viz-3: 15 81% 56%;
+    --viz-grid: 214 20% 90%;
+    --viz-axis: 215 16% 55%;
+  }
+
+  .dark {
+    --bg: 215 32% 9%;
+    --surface: 215 28% 13%;
+    --surface-2: 215 24% 17%;
+    --border: 215 18% 26%;
+    --text: 210 30% 94%;
+    --text-muted: 214 16% 66%;
+
+    --primary: 205 72% 62%;
+    --primary-strong: 205 80% 74%;
+    --primary-fg: 215 40% 10%;
+    --primary-soft: 207 42% 21%;
+
+    --accent: 38 88% 60%;
+    --accent-soft: 36 44% 20%;
+    --accent-fg: 38 90% 88%;
+
+    --success: 152 48% 56%;
+    --success-soft: 152 32% 18%;
+
+    --danger: 0 72% 66%;
+    --danger-soft: 0 38% 21%;
+
+    --info: 199 72% 62%;
+    --info-soft: 199 40% 19%;
+
+    --ai: 262 72% 73%;
+    --ai-soft: 262 32% 22%;
+
+    --ring: 205 72% 60%;
+
+    /* dark steps of the same hues, selected against the dark surface */
+    --viz-1: 212 76% 56%;
+    --viz-2: 157 72% 36%;
+    --viz-3: 15 70% 50%;
+    --viz-grid: 215 18% 24%;
+    --viz-axis: 214 16% 60%;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  /* The page itself never scrolls sideways. */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  /*
+   * Width guards. Grid children default to min-width:auto, so one wide table or
+   * one long payload line pushes the whole layout past the viewport. Allowing
+   * them to shrink keeps every page inside the screen; the table or the payload
+   * then scrolls inside its own card, which is what the overflow wrappers do.
+   */
+  .grid > * {
+    min-width: 0;
+  }
+
+  .card,
+  table,
+  pre {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    font-feature-settings: 'cv05', 'ss03';
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background: hsl(var(--border));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--text-muted) / 0.5);
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border border-line bg-surface shadow-card;
+  }
+
+  .row-link {
+    @apply cursor-pointer transition-colors hover:bg-surface2;
+  }
+
+  .mono {
+    @apply font-mono text-[0.8125rem] tabular-nums;
+  }
+
+  .label {
+    @apply text-2xs font-semibold uppercase tracking-wider text-muted;
+  }
+
+  .link {
+    @apply cursor-pointer font-medium text-primary underline-offset-2 hover:underline;
+  }
+
+  .scroll-thin {
+    scrollbar-width: thin;
+  }
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* the header block that only makes sense on paper */
+  .print-only {
+    display: flex !important;
+  }
+
+  html,
+  body,
+  #root {
+    height: auto;
+    background: #fff;
+  }
+
+  body {
+    color: #111827;
+  }
+
+  .print-page,
+  .card,
+  figure,
+  table,
+  pre {
+    break-inside: avoid;
+  }
+
+  .print-break {
+    break-before: page;
+  }
+
+  /* collapsed detail is printed in full */
+  details {
+    display: block !important;
+  }
+
+  details > summary {
+    list-style: none;
+  }
+
+  details:not([open]) > *:not(summary) {
+    display: revert !important;
+  }
+
+  .scroll-thin,
+  [class*='overflow-'] {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  a[href]::after {
+    content: '';
+  }
+}
